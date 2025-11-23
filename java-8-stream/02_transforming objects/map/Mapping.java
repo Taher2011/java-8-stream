@@ -5,17 +5,17 @@ import java.util.List;
 
 public class Mapping {
 
-	private static void findAllDepartmentsNames(List<Student> students) {
+	private static void getAllDepartmentsNamesList(List<Student> students) {
 		System.out.println("list of all department names :");
 		students.stream().map(s -> s.getDepartmantName()).distinct().forEach(System.out::println);
 	}
 
-	private static void findAllEmployeesNames(List<Employee> employees) {
+	private static void getAllEmployeesNamesList(List<Employee> employees) {
 		System.out.println("list of all employees names :");
 		employees.stream().map(e -> e.getName()).forEach(System.out::println);
 	}
 
-	private static void convertListOfEmployeesToListOfSalaries(List<Employee> employees) {
+	private static void getAllEmployeeSalariesList(List<Employee> employees) {
 		System.out.println("convert list of employees → list of salaries :");
 		employees.stream().map(e -> e.getSalary()).forEach(System.out::println);
 	}
@@ -25,7 +25,7 @@ public class Mapping {
 		numbers.stream().map(n -> n * n).forEach(System.out::println);
 	}
 
-	private static void convertListOfStringsToUppercase(List<Employee> employees) {
+	private static void getEmployeeNamesListInUppercase(List<Employee> employees) {
 		System.out.println("employees name in uppercase :");
 		employees.stream().map(e -> e.getName().toUpperCase()).forEach(System.out::println);
 	}
@@ -45,17 +45,17 @@ public class Mapping {
 				new Employee("Sophia", "Female", 33, 85000), new Employee("Mark", "Male", 28, 95000));
 
 		// Get list of all department names
-		findAllDepartmentsNames(students);
+		getAllDepartmentsNamesList(students);
 		System.out.println(
 				"==============================================================================================");
 
 		// Get list of employee names
-		findAllEmployeesNames(employees);
+		getAllEmployeesNamesList(employees);
 		System.out.println(
 				"==============================================================================================");
 
 		// Convert list of employees → list of salaries
-		convertListOfEmployeesToListOfSalaries(employees);
+		getAllEmployeeSalariesList(employees);
 		System.out.println(
 				"==============================================================================================");
 
@@ -66,7 +66,7 @@ public class Mapping {
 				"==============================================================================================");
 
 		// Convert list of employees → uppercase
-		convertListOfStringsToUppercase(employees);
+		getEmployeeNamesListInUppercase(employees);
 		System.out.println(
 				"==============================================================================================");
 	}
