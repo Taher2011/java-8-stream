@@ -2,49 +2,44 @@ package filter;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Filtering {
 
 	private static void firstNameStartsWithA(List<Student> students) {
 		System.out.println("students name start with 'A' :");
-		students.stream().filter(s -> s.getFirstName().startsWith("A")).collect(Collectors.toList())
-				.forEach(System.out::println);
+		students.stream().filter(s -> s.getFirstName().startsWith("A")).forEach(System.out::println);
 	}
 
 	private static void findStudentsAgeLessThan22(List<Student> students) {
 		System.out.println("students age less than 22 :");
-		students.stream().filter(s -> s.getAge() < 22).collect(Collectors.toList()).forEach(System.out::println);
+		students.stream().filter(s -> s.getAge() < 22).forEach(System.out::println);
 	}
 
 	private static void findStudentsRankBetween60and100(List<Student> students) {
 		System.out.println("students rank between 60 and 100 :");
-		students.stream().filter(s -> s.getRank() > 60 && s.getRank() < 100).collect(Collectors.toList())
-				.forEach(System.out::println);
+		students.stream().filter(s -> s.getRank() > 60 && s.getRank() < 100).forEach(System.out::println);
 	}
 
 	private static void findStudentsStayinginNewYorkandSortbyName(List<Student> students) {
 		System.out.println("students staying in NewYork :");
-		students.stream().filter(s -> s.getCity().equalsIgnoreCase("new york")).collect(Collectors.toList())
-				.forEach(System.out::println);
+		students.stream().filter(s -> s.getCity().equalsIgnoreCase("new york")).forEach(System.out::println);
 	}
 
 	private static void findEmployeesHavingSalaryGreaterThan70K(List<Employee> employees) {
 		System.out.println("employees having salary greater than 70K :");
-		employees.stream().filter(e -> e.getSalary() > 70000).collect(Collectors.toList()).forEach(System.out::println);
+		employees.stream().filter(e -> e.getSalary() > 70000).forEach(System.out::println);
 	}
 
 	private static void filterOutNullValuesFromList() {
 		System.out.println("non-null values are : ");
 		List<String> fruits = Arrays.asList("apple", null, "banana", "cherry", null, "date");
-		fruits.stream().filter(f -> f != null).collect(Collectors.toList()).forEach(System.out::println);
+		fruits.stream().filter(f -> f != null).forEach(System.out::println);
 	}
 
 	private static void filterFruitsWhoseLengthGreaterThan5() {
 		System.out.println("fruits whose length > 5 : ");
 		List<String> fruits = Arrays.asList("apple", null, "banana", "cherry", null, "date");
-		fruits.stream().filter(f -> f != null).filter(f -> f.length() > 5).collect(Collectors.toList())
-				.forEach(System.out::println);
+		fruits.stream().filter(f -> f != null).filter(f -> f.length() > 5).forEach(System.out::println);
 	}
 
 	public static void main(String[] args) {

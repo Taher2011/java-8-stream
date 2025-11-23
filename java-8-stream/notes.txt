@@ -1,0 +1,3 @@
+Operation	Creates   NEW object?	  Creates NEW list?	          Purpose
+filter()	❌ No	    ✔                 Yes	                Select items
+map()	    ✔ Yes	    ✔                 Yes	                Transform items
