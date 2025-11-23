@@ -2,6 +2,12 @@ package map;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 public class Mapping {
 
@@ -30,6 +36,25 @@ public class Mapping {
 		employees.stream().map(e -> e.getName().toUpperCase()).forEach(System.out::println);
 	}
 
+	private static void convertEmployeeToEMployeeDTO(List<Employee> employees) {
+
+		@AllArgsConstructor
+		@Setter
+		@Getter
+		@ToString
+		class EmployeeDTO {
+			private String name;
+			private String gender;
+			private int age;
+			private double salary;
+		}
+		List<EmployeeDTO> employeeDTOs = employees.stream()
+				.map(e -> new EmployeeDTO(e.getName(), e.getGender(), e.getAge(), e.getSalary()))
+				.collect(Collectors.toList());
+		System.out.println("converting list of employees to list of employees DTO");
+		employeeDTOs.forEach(System.out::println);
+	}
+
 	public static void main(String[] args) {
 
 		List<Student> students = Arrays.asList(
@@ -54,7 +79,7 @@ public class Mapping {
 		System.out.println(
 				"==============================================================================================");
 
-		// Convert list of employees → list of salaries
+		// Get list of employees salaries
 		getAllEmployeeSalariesList(employees);
 		System.out.println(
 				"==============================================================================================");
@@ -65,8 +90,13 @@ public class Mapping {
 		System.out.println(
 				"==============================================================================================");
 
-		// Convert list of employees → uppercase
+		// Get list of employees names into uppercase
 		getEmployeeNamesListInUppercase(employees);
+		System.out.println(
+				"==============================================================================================");
+
+		// Convert list of employees to list of employees DTO
+		convertEmployeeToEMployeeDTO(employees);
 		System.out.println(
 				"==============================================================================================");
 	}
