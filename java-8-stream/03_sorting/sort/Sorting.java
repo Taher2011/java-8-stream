@@ -3,6 +3,7 @@ package sort;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 public class Sorting {
 
@@ -61,9 +62,11 @@ public class Sorting {
 
 	private static void findSecondHighestRankStudent(List<Student> students) {
 		System.out.println("second highest rank student : ");
-		Student student = students.stream().sorted(Comparator.comparing(Student::getRank).reversed()).skip(1)
-				.findFirst().get();
-		System.out.println(student);
+		Optional<Student> student = students.stream().sorted(Comparator.comparing(Student::getRank).reversed()).skip(1)
+				.findFirst();
+		if (student.isPresent()) {
+			System.out.println(student.get());
+		}
 	}
 
 	public static void main(String[] args) {
