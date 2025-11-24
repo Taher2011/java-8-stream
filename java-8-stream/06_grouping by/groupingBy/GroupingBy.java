@@ -1,5 +1,6 @@
 package groupingBy;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -91,6 +92,23 @@ public class GroupingBy {
 		});
 	}
 
+	private static void filterDuplicateNumbersUsingCountingApproach1(List<Integer> list) {
+		Map<Integer, Long> map = list.stream().collect(Collectors.groupingBy(l -> l, Collectors.counting()));
+		List<Integer> duplicateNumbers = new ArrayList<>();
+		map.forEach((k, v) -> {
+			if (v.longValue() > 1) {
+				duplicateNumbers.add(k);
+			}
+		});
+		System.out.println("duplicate numbers are : " + duplicateNumbers);
+	}
+
+	private static void filterDuplicateNumbersUsingCountingApproach2(List<Integer> list) {
+		List<Integer> duplicateNumbers = list.stream().collect(Collectors.groupingBy(l -> l, Collectors.counting()))
+				.entrySet().stream().filter(e -> e.getValue() > 1).map(e -> e.getKey()).collect(Collectors.toList());
+		System.out.println("duplicate numbers are : " + duplicateNumbers);
+	}
+
 	public static void main(String[] args) {
 
 		List<Student> students = Arrays.asList(
@@ -108,6 +126,8 @@ public class GroupingBy {
 		List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
 
 		List<String> fruits = Arrays.asList("apple", "banana", "cherry", "avocado", "blueberry", "apricot");
+
+		List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 3, 2, 1, 5);
 
 		// Group students by department name
 		groupStudentsByDepartmentName(students);
@@ -151,6 +171,16 @@ public class GroupingBy {
 
 		// Group strings by first letter
 		groupStringsByFirstLetter(fruits);
+		System.out.println(
+				"==============================================================================================");
+
+		// Filter duplicate numbers (using counting > 1)
+		filterDuplicateNumbersUsingCountingApproach1(list);
+		System.out.println(
+				"==============================================================================================");
+
+		// Filter duplicate numbers (using counting > 1)
+		filterDuplicateNumbersUsingCountingApproach2(list);
 		System.out.println(
 				"==============================================================================================");
 	}
