@@ -9,10 +9,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-class Employee {
-	private String name;
-	private String gender;
-	private int age;
-	private double salary;
-	private String department;
+class ProductSale {
+	private String productName;
+	private int quantity;
 }
