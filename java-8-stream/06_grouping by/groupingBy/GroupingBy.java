@@ -165,7 +165,7 @@ public class GroupingBy {
 
 		List<String> fruits = Arrays.asList("apple", "banana", "cherry", "avocado", "blueberry", "apricot");
 
-		List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 3, 2, 1, 5);
+		List<Integer> duplicates = Arrays.asList(1, 2, 3, 4, 5, 6, 3, 2, 1, 5);
 
 		// Group students by department name
 		groupStudentsByDepartmentName(students);
@@ -213,12 +213,12 @@ public class GroupingBy {
 				"==============================================================================================");
 
 		// Filter duplicate numbers (using counting > 1)
-		filterDuplicateNumbersUsingCountingApproach1(list);
+		filterDuplicateNumbersUsingCountingApproach1(duplicates);
 		System.out.println(
 				"==============================================================================================");
 
 		// Filter duplicate numbers (using counting > 1)
-		filterDuplicateNumbersUsingCountingApproach2(list);
+		filterDuplicateNumbersUsingCountingApproach2(duplicates);
 		System.out.println(
 				"==============================================================================================");
 
