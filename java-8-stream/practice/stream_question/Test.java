@@ -232,29 +232,30 @@ public class Test {
 	}
 
 	// Remove consecutive duplicate elements from a list
-	private static void removeConsecutiveDuplicateElementsFromList(List<Integer> numbers) {
-		List<Integer> list = new ArrayList<>();
-		for (Integer number : numbers) {
-			if (list.isEmpty() || !(list.get(list.size() - 1).equals(number))) {
-				list.add(number);
+	private static void removeConsecutiveDuplicateElementsFromList(List<Integer> list) {
+		List<Integer> uniques = new ArrayList<>();
+		for (Integer num : list) {
+			if (uniques.isEmpty() || !(uniques.get(uniques.size() - 1).equals(num))) {
+				uniques.add(num);
 			}
 		}
-		System.out.println(list);
+		System.out.println(list + " after removing consecutive duplicate elements from a list : " + uniques);
 	}
 
 	// Remove consecutive duplicate elements from a list using stream
 	private static void removeConsecutiveDuplicateElementsFromListUsingStream(List<Integer> list) {
-		List<Integer> collect = IntStream.range(0, list.size())
-				.filter(i -> i == 0 || !list.get(i).equals(list.get(i - 1))).mapToObj(i -> list.get(i))
+		List<Integer> uniques = IntStream.range(0, list.size())
+				.filter(i -> i == 0 || !(list.get(i).equals(list.get(i - 1)))).mapToObj(i -> list.get(i))
 				.collect(Collectors.toList());
-		System.out.println(collect);
+		System.out.println(list + " after removing consecutive duplicate elements from a list : " + uniques);
 	}
 
 	// Merge two arrays, sort them, and find the distinct elements
 	private static void mergerTwoArraySortAndFindDistinctElement(Integer[] array1, Integer[] array2) {
 		Integer[] array3 = Stream.concat(Arrays.stream(array1), Arrays.stream(array2)).sorted().distinct()
-				.toArray(n -> new Integer[n]);
-		System.out.println(Arrays.toString(array3));
+				.toArray(a -> new Integer[a]);
+		System.out.println("merging { 5, 3, 9, 1 } { 3, 7, 1, 8} two arrays and sorting and distinct : "
+				+ Arrays.toString(array3));
 	}
 
 	public static void main(String[] args) {
