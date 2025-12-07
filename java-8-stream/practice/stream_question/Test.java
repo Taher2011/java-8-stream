@@ -258,6 +258,17 @@ public class Test {
 				+ Arrays.toString(array3));
 	}
 
+	// Check if a given string is a palindrome
+	public static void isPalindrome(String str) {
+		int l = str.length();
+		boolean isPalindrome = IntStream.range(0, l / 2).allMatch(i -> str.charAt(i) == str.charAt(l - i - 1));
+		if (isPalindrome) {
+			System.out.println(str + " is palindrome");
+		} else {
+			System.out.println(str + " is not a palindrome");
+		}
+	}
+
 	public static void main(String[] args) {
 
 		List<Student> students = Arrays.asList(
@@ -412,8 +423,11 @@ public class Test {
 		mergerTwoArraySortAndFindDistinctElement(new Integer[] { 5, 3, 9, 1 }, new Integer[] { 3, 7, 1, 8 });
 		System.out.println(
 				"==============================================================================================");
+
+		isPalindrome("madam");
 		System.out.println(
 				"==============================================================================================");
+
 	}
 
 }
