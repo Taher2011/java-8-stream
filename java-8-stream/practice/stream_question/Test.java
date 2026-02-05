@@ -78,6 +78,14 @@ public class Test {
 						.println("first non-repeating character in a string : " + string + " is : " + c));
 	}
 
+	// Find the first repeating character in a string ?
+	private static void findFirstRepeatingChar(String string) {
+		string.chars().mapToObj(c -> (char) c)
+				.collect(Collectors.groupingBy(c -> c, LinkedHashMap::new, Collectors.counting())).entrySet().stream()
+				.filter(e -> e.getValue() > 1).findFirst()
+				.ifPresent(e -> System.out.println("first repeating char " + e.getKey()));
+	}
+
 	// Find frequency of characters of a given string ?
 	private static void findFrequencyOfCharInString(String string) {
 		Map<Character, Long> map = string.chars().mapToObj(c -> (char) c)
@@ -85,6 +93,46 @@ public class Test {
 		map.forEach((k, v) -> {
 			System.out.println("frequency of char '" + k + "' is : " + v);
 		});
+	}
+
+	// Check two strings are anagram ?
+	private static void checkAnagram(String string1, String string2) {
+		if (string1.length() != string2.length()) {
+			System.out.println("strings are not anagram");
+			return;
+		}
+		String sorted1 = string1.chars().mapToObj(c -> (char) c).map(c -> String.valueOf(c)).sorted()
+				.collect(Collectors.joining());
+		String sorted2 = string2.chars().mapToObj(c -> (char) c).map(c -> String.valueOf(c)).sorted()
+				.collect(Collectors.joining());
+		IntStream index = IntStream.range(0, sorted1.length());
+		if (index.allMatch(i -> sorted1.charAt(i) == sorted2.charAt(i))) {
+			System.out.println("strings are anagram");
+		} else {
+			System.out.println("strings are not anagram");
+		}
+	}
+
+	// Find longest word in a string
+	private static void longestWordInString(String sentence) {
+		String[] strings = sentence.split(" ");
+		Arrays.stream(strings).max(Comparator.comparingInt(s -> s.length()))
+				.ifPresent(s -> System.out.println("longest word : " + s));
+	}
+
+	// Remove duplicate characters
+	private static void removeDuplicateCharacters(String string) {
+		System.out.println(
+				string.chars().distinct().mapToObj(c -> String.valueOf((char) c)).collect(Collectors.joining()));
+	}
+
+	// Count the number of vowels and consonants
+	private static void countNumberOfVowelAndConsonant(String string) {
+		long vowelCount = string.chars().mapToObj(c -> (char) c).filter(c -> Character.isLetter(c))
+				.filter(c -> "aeiou".indexOf(c) != -1).count();
+		long consonantCount = string.chars().mapToObj(c -> (char) c).filter(c -> Character.isLetter(c))
+				.filter(c -> "aeiou".indexOf(c) == -1).count();
+		System.out.println("count of vowel " + vowelCount + " and count of consonant " + consonantCount);
 	}
 
 	// Group a list of strings by their length ?
@@ -331,7 +379,27 @@ public class Test {
 		System.out.println(
 				"==============================================================================================");
 
+		findFirstRepeatingChar("programming");
+		System.out.println(
+				"==============================================================================================");
+
 		findFrequencyOfCharInString("malayalam");
+		System.out.println(
+				"==============================================================================================");
+
+		checkAnagram("listen", "silent");
+		System.out.println(
+				"==============================================================================================");
+
+		longestWordInString("Streams make Java expressive");
+		System.out.println(
+				"==============================================================================================");
+
+		removeDuplicateCharacters("malayalam");
+		System.out.println(
+				"==============================================================================================");
+
+		countNumberOfVowelAndConsonant("taher");
 		System.out.println(
 				"==============================================================================================");
 
