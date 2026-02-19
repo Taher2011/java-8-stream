@@ -307,14 +307,14 @@ public class Test {
 	}
 
 	// Check if a given string is a palindrome
-	public static void isPalindrome(String str) {
-		int l = str.length();
-		boolean isPalindrome = IntStream.range(0, l / 2).allMatch(i -> str.charAt(i) == str.charAt(l - i - 1));
-		if (isPalindrome) {
-			System.out.println(str + " is palindrome");
-		} else {
-			System.out.println(str + " is not a palindrome");
-		}
+	public static void isPalindrome(List<String> strings) {
+		strings.stream().forEach(s -> {
+			if (IntStream.range(0, s.length() / 2).allMatch(i -> s.charAt(i) == s.charAt(s.length() - 1 - i))) {
+				System.out.println(s + " is palindrome");
+			} else {
+				System.out.println(s + " is not palindrome");
+			}
+		});
 	}
 
 	public static void main(String[] args) {
@@ -492,7 +492,7 @@ public class Test {
 		System.out.println(
 				"==============================================================================================");
 
-		isPalindrome("madam");
+		isPalindrome(List.of("malayalam", "hello", "madam"));
 		System.out.println(
 				"==============================================================================================");
 
